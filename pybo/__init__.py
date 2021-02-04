@@ -8,7 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 # --------------------------------------------------------------------------- #
 
-import config
 
 # --------------------------------- [edit] ---------------------------------- #
 naming_convention = {
@@ -24,7 +23,9 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-
+    # --------------------------------- [edit] ---------------------------------- #
+    app.config.from_envvar('APP_CONFIG_FILE')
+    # --------------------------------------------------------------------------- #
     app.config.from_object(config)
     # --------------------------------- [edit] ---------------------------------- #
     # markdown
